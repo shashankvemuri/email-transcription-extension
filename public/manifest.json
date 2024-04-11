@@ -1,0 +1,45 @@
+{
+    "manifest_version": 2,
+    "name": "Email Transcription",
+    "version": "1.0",
+    "description": "Prompt with your voice a new email - right in your Chrome browser!",
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "64": "icons/icon64.png",
+        "128": "icons/icon128.png"
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+        "https://mail.google.com/*",
+        "https://inbox.google.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["https://mail.google.com/*", "https://inbox.google.com/*"],
+            "js": ["inboxsdk.js", "content.js"],
+            "css": ["content.css"],
+            "run_at": "document_idle",
+            "all_frames": false
+        }
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png",
+            "64": "icons/icon64.png",
+            "128": "icons/icon128.png"
+        },
+        "default_popup": "index.html"
+    },
+    "web_accessible_resources": [
+        "icons/start_icon.png",
+        "icons/stop_icon.png",
+        "icons/status.gif"
+    ]
+}
