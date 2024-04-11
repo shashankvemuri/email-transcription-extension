@@ -1,7 +1,7 @@
 # Email Transcription Extension
 
 ## Description
-The Email Transcription Extension is a Chrome extension designed to enhance productivity and streamline workflows within Gmail. Using advanced speech-to-text capabilities, it helps users to transcribe spoken words directly into text in their Gmail compose window, allowing for a hands-free email-writing experience.
+The Email Transcription Extension is a Chrome extension designed to enhance productivity within Gmail. Using advanced speech-to-text technology, it helps users to transcribe spoken words directly into text in their Gmail compose window, allowing for a hands-free email-writing experience.
 
 This particular application is optimized for identifying and accurately transcribing proper nouns, including names, locations, and other specific terms that are often challenging for standard speech recognition software.
 
@@ -14,12 +14,12 @@ This particular application is optimized for identifying and accurately transcri
 
 ## Installation
 1. Clone the repository or download the ZIP file
-2. Unzip (if downloaded as a ZIP) and enter into the project directory in your terminal
+2. Unzip (if downloaded as a ZIP) and enter into the project directory in terminal
 3. Install the necessary dependencies within the folder by running `npm install`
 4. Download the final build version of the extension by running `npm run build`
 5. Navigate to `chrome://extensions/` in your Chrome browser.
 6. Enable "Developer mode" at the top-right corner
-7. Click on "Load unpacked" and select the extension's directory (the `build` folder)
+7. Click on "Load unpacked" and select the  `build` folder within the project's directory
 8. The extension should now appear in your extensions list and is ready for use
 
 ## Usage
@@ -33,7 +33,7 @@ This particular application is optimized for identifying and accurately transcri
 
 3. **Stopping a Transcription:**
     - Once you've finished dictating, click on the "Stop Email Transcription" button (stop icon) in the compose window toolbar to end the recording.
-    - The extension will process your audio and insert the transcribed text into the compose window!
+    - The extension will process your audio and insert the transcribed text automatically into the compose window!
 
 ## Inputting Your OpenAI API Key
 To enable the transcription features, you need to provide your OpenAI API key.
@@ -49,5 +49,5 @@ If you do not have an OpenAI API key, you can obtain one by:
 3. Copying the generated API key and pasting it into the extension's popup as described above.
 
 ## Notes
-- Ensure your microphone is properly configured and allowed for use by the Chrome browser.
+- Ensure your microphone is properly configured and allowed for use by the Chrome browser and GMail. You can enter into the extension settings to check and adjust your microphone permissions if this is an issue.
 - The extension requires an active internet connection for transcription services.
