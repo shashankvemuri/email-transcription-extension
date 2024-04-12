@@ -13,34 +13,41 @@ This particular application is optimized for identifying and accurately transcri
 - **Secure and Private:** The extension does not store any voice data, ensuring user privacy.
 
 ## Installation
-1. Clone the repository or download the ZIP file
-2. Unzip (if downloaded as a ZIP) and enter into the project directory in terminal
-3. Install the necessary dependencies within the folder by running `npm install`
-4. Download the final build version of the extension by running `npm run build`
+1. Clone the repository or download the ZIP file.
+2. Unzip (if downloaded as a ZIP) and enter into the project directory in terminal.
+3. Install the necessary dependencies within the folder by running `npm install`.
+4. Download the final build version of the extension by running `npm run build`.
 5. Navigate to `chrome://extensions/` in your Chrome browser.
-6. Enable "Developer mode" at the top-right corner
-7. Click on "Load unpacked" and select the  `build` folder within the project's directory
-8. The extension should now appear in your extensions list and is ready for use
+6. Enable "Developer mode" at the top-right corner.
+7. Click on "Load unpacked" and select the  `build` folder within the project's directory.
+8. The extension should now appear in your extensions list and is ready for use.
 
-## Usage
-1. **Setting Up The Extension**
-    - Once the extension is installed, open the popup and input your OpenAI API key (see instructions below).
-    - Open your GMail tab (or refresh your current tab) and click on the "Compose" button to start a new email.
+## Usage and API Key Setup
+1. **Setting Up The Extension:**
+   - Once the extension is installed, click on the extension icon in the Chrome toolbar to open the popup window.
+   - You will see an input field labeled "OpenAI API Token". Enter your OpenAI API key here. If you do not have an API key, see instructions below to obtain one.
+   - Click the "Save Token" button to store your API key securely. Now, you can close the popup window.
+   - Open your Gmail tab (or refresh your current tab) and click on the "Compose" button to start a new email.
 
 2. **Starting a Transcription:**
-    - Click on the "Start Email Transcription" button (start icon) in the compose window toolbar to begin recording your voice.
-    - Speak clearly and directly into the microphone to dictate your email content.
+   - Click on the "Start Email Transcription" button (start icon) in the bottom toolbar to begin recording your voice (visual below).
+   - Speak clearly and directly into the microphone to dictate your email content.
 
 3. **Stopping a Transcription:**
-    - Once you've finished dictating, click on the "Stop Email Transcription" button (stop icon) in the compose window toolbar to end the recording.
-    - The extension will process your audio and insert the transcribed text automatically into the compose window!
+   - Once you've finished dictating, click on the "Stop Email Transcription" button (stop icon) in the bottom toolbar to end the recording.
+   - The extension will process your audio and insert the transcribed text automatically into the compose window!
 
-## Inputting Your OpenAI API Key
-To enable the transcription features, you need to provide your OpenAI API key.
+## Visual Guide
+*API Key Popup Window* | *Transcription Button(s)*
+:-------------------------:|:-------------------------:
+![API Key Popup Window](public/icons/popup_visual.png) | ![Start and Stop Transcription Buttons](public/icons/icons_visual.png)
 
-1. Click on the extension icon in the Chrome toolbar to open the popup window.
-2. You will see an input field labeled "OpenAI API Token". Enter your API key here.
-3. Click the "Save Token" button to store your API key securely. The extension will now use this key for transcription services.
+## Best Practices for Using the Extension
+- **Speak Clearly:** Ensure clear enunciation for best transcription results.
+- **Email Format:** Try to speak in the format of an email. Start with a greeting, then the body, and close with a sign-off.
+- **Paragraphs:** Pause slightly or use transition words like "moving on" or "furthermore" to indicate new paragraphs.
+- **Background Noise:** Minimize background noise to improve transcription accuracy.
+- **Editing:** Review the transcribed text for any errors or missing information before sending the email.
 
 ## Obtaining an OpenAI API Key
 If you do not have an OpenAI API key, you can obtain one by:
