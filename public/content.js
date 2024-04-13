@@ -166,7 +166,10 @@ async function postToGPT4(transcriptionText, storedToken) {
         model: "gpt-4",
         messages: [{
             role: "user",
-            content: `As an editor, your role is to proofread and correct the following email transcript. Your primary focus should be on the accurate spelling of proper nouns, which include names of individuals, organizations, products, and geographical locations. Correct any misspellings you find, and format the transcription into a typical email format. Do not add any new words or content. Only make corrections where necessary. If the original transcript is brief and without errors, simply restate it without modifications. Do not include a subject line. \n ###TRANSCRIPT### \n ${transcriptionText}`
+            content: `As an editor, your task is to proofread and correct the provided email transcript, if needed. Focus primarily on ensuring the accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations. Correct any errors found. Format the email by separating it into distinct paragraphs based on topics, with a greeting, body, and sign-off if given the transcription. Do not introduce any new content; only make necessary corrections. If the original transcript is brief and error-free, simply restate it without modifications. Note: Do not add a subject line.
+
+            Transcript: ###
+            ${transcriptionText}:###`
         }],
         temperature: 0.2
     };
