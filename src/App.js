@@ -5,7 +5,7 @@ import createTheme from '@mui/material/styles/createTheme';
 import themeOptions from './themeOptions';
 
 // Create a custom theme using theme options
-const darkTheme = createTheme(themeOptions);
+const whiteTheme = createTheme(themeOptions);
 
 // Main App component
 function App() {
@@ -68,11 +68,11 @@ function App() {
 
     // Component rendering
     return (
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={whiteTheme}>
             <CssBaseline />
             <Box display="flex" flexDirection="column" width="350px" padding="20px" gap="16px" alignItems="center" bgcolor="background.paper" borderRadius={2}>
                 <Typography variant="h5" textAlign="center" gutterBottom>
-                    Email Transcription Extension
+                    <b>Email Transcription Extension</b>
                 </Typography>
                 <Typography variant="subtitle1" textAlign="center">
                     Transcribe spoken words into text directly in your Gmail tab!
@@ -89,14 +89,17 @@ function App() {
                 <Button variant="contained" color="primary" onClick={handleTokenSave}>
                     Save Token
                 </Button>
+                <Typography variant="body2" textAlign="center">
+                    Enter your OpenAI API key to enable the email transcription service. <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener noreferrer">Get your key here</a>.
+                </Typography>
                 <Divider style={{ width: '90%', marginTop: '5px' }}/>
                 <Typography variant="body2" textAlign="center">
-                    How to Use:
+                    <b>How to Use:</b>
                 </Typography>
-                <Typography variant="body2" style={{ width: '90%', marginTop: '-10px' }}>
+                <Typography variant="body2" style={{ marginTop: '-10px' }}>
                     <ol>
                         <li>After saving your API Key, open (or refresh) Gmail and click Compose to start a new email draft.</li>
-                        <li>In the bottom toolbar, next to the send button, use the <img src="icons/start_icon.png" alt="Start Recording" style={{ width: '16px', verticalAlign: 'middle' }} /> to start and <img src="icons/stop_icon.png" alt="Stop Recording" style={{ width: '16px', verticalAlign: 'middle' }} /> to stop voice transcription of your email.</li>
+                        <li>In the bottom toolbar next to the send button, use the <img src="icons/start_icon.png" alt="Start Recording" style={{ width: '16px', verticalAlign: 'middle' }} /> to start and <img src="icons/stop_icon.png" alt="Stop Recording" style={{ width: '16px', verticalAlign: 'middle' }} /> to stop voice transcription of your email.</li>
                     </ol>
                 </Typography>
                 <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>

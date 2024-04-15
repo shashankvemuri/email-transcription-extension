@@ -1,20 +1,20 @@
 const themeOptions = {
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
             main: '#90caf9',
         },
         background: {
-            default: '#121212',
-            paper: '#1d1d1d',
+            default: '#f3f1ec',
+            paper: '#fffaf5',
         },
         text: {
-            primary: '#E0E0E0',
-            secondary: '#B0BEC5',
+            primary: '#000000',
+            secondary: '#424242',
         },
     },
     typography: {
-        fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+        fontFamily: 'San Francisco, -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Arial, sans-serif',
         button: {
             textTransform: 'none',
         },
@@ -24,6 +24,7 @@ const themeOptions = {
             styleOverrides: {
                 root: {
                     fontWeight: 500,
+                    borderRadius: 8,
                 },
             },
         },
