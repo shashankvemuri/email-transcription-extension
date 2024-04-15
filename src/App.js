@@ -71,15 +71,12 @@ function App() {
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
             <Box display="flex" flexDirection="column" width="350px" padding="20px" gap="16px" alignItems="center" bgcolor="background.paper" borderRadius={2}>
-                {/* Application title */}
                 <Typography variant="h5" textAlign="center" gutterBottom>
                     Email Transcription Extension
                 </Typography>
-                {/* Brief description of the application's functionality */}
                 <Typography variant="subtitle1" textAlign="center">
-                    Transcribe spoken words into text directly in your Gmail client!
+                    Transcribe spoken words into text directly in your Gmail tab!
                 </Typography>
-                {/* Text field for the user to input their OpenAI API token */}
                 <TextField
                     fullWidth
                     label="OpenAI API Token"
@@ -89,13 +86,18 @@ function App() {
                     size="small"
                     type={token.length > 0 ? 'password' : 'text'}
                 />
-                {/* Button to save the entered token */}
                 <Button variant="contained" color="primary" onClick={handleTokenSave}>
                     Save Token
                 </Button>
-                {/* Instructions for obtaining an OpenAI API key */}
+                <Divider style={{ width: '90%', marginTop: '5px' }}/>
                 <Typography variant="body2" textAlign="center">
-                    Enter your OpenAI API key to enable the email transcription service. <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener noreferrer">Get your key</a>.
+                    How to Use:
+                </Typography>
+                <Typography variant="body2" style={{ width: '90%', marginTop: '-10px' }}>
+                    <ol>
+                        <li>After saving your API Key, open (or refresh) Gmail and click Compose to start a new email draft.</li>
+                        <li>In the bottom toolbar, next to the send button, use the <img src="icons/start_icon.png" alt="Start Recording" style={{ width: '16px', verticalAlign: 'middle' }} /> to start and <img src="icons/stop_icon.png" alt="Stop Recording" style={{ width: '16px', verticalAlign: 'middle' }} /> to stop voice transcription of your email.</li>
+                    </ol>
                 </Typography>
                 <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
                     <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
