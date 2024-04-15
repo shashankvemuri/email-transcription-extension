@@ -1,6 +1,6 @@
 // Import necessary React and Material-UI components
 import React, { useState } from 'react';
-import { CssBaseline, Box, TextField, Typography, Button, ThemeProvider } from '@mui/material';
+import { CssBaseline, Box, TextField, Typography, Button, ThemeProvider, Snackbar, Alert, Divider } from '@mui/material';
 import createTheme from '@mui/material/styles/createTheme';
 import themeOptions from './themeOptions';
 
@@ -9,17 +9,10 @@ const darkTheme = createTheme(themeOptions);
 
 // Main App component
 function App() {
-    // State hook for managing OpenAI API token
     const [token, setToken] = useState('');
-
-    // Effect hook to retrieve the stored token from Chrome storage when the component mounts
-    React.useEffect(() => {
-        window.chrome.storage.sync.get(['openai_token'], function(result) {
-            if (result.openai_token) {
-                setToken(result.openai_token);
-            }
-        });
-    }, []);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('info');
 
     // Handler for token input changes
     const handleTokenChange = (event) => {
@@ -28,9 +21,49 @@ function App() {
 
     // Handler for saving the token to Chrome storage
     const handleTokenSave = () => {
-        window.chrome.storage.sync.set({ openai_token: token }, () => {
-            console.log('Token saved:', token);
+        if (!token.trim()) {
+            setSnackbarMessage('Please enter an API key!');
+            setSnackbarSeverity('warning');
+            setOpenSnackbar(true);
+            return;
+        }
+
+        // Optionally test the token by making a test API call
+        testAPIKey(token, (isValid) => {
+            if (isValid) {
+                window.chrome.storage.sync.set({ openai_token: token }, () => {
+                    setSnackbarMessage('API Token saved successfully!');
+                    setSnackbarSeverity('success');
+                    setOpenSnackbar(true);
+                });
+            } else {
+                setSnackbarMessage('Invalid API Key. Please check and try again.');
+                setSnackbarSeverity('error');
+                setOpenSnackbar(true);
+            }
         });
+    };
+
+    // Simulate an API key validation
+    const testAPIKey = (apiKey, callback) => {
+        fetch('https://api.openai.com/v1/models', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`
+            }
+        }).then(response => {
+            callback(response.ok);
+        }).catch(() => {
+            callback(false);
+        });
+    };
+
+    // Component for displaying feedback as a Snackbar
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false);
     };
 
     // Component rendering
@@ -64,6 +97,11 @@ function App() {
                 <Typography variant="body2" textAlign="center">
                     Enter your OpenAI API key to enable the email transcription service. <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener noreferrer">Get your key</a>.
                 </Typography>
+                <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+                    <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </Box>
         </ThemeProvider>
     );
