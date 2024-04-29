@@ -1,7 +1,7 @@
 {
     "name": "@shashankvemuri/email-transcription",
     "version": "1.0.0",
-    "description": "",
+    "description": "Speech-to-text transcription directly in your GMail client!",
     "author": "Shashank Vemuri",
     "license": "MIT",
     "dependencies": {
