@@ -1,3 +1,5 @@
+import * as InboxSDK from '@inboxsdk/core';
+
 // Utility function to retrieve data from Chrome storage
 async function retrieveFromStorage(key) {
     return new Promise((resolve) => {
@@ -100,7 +102,7 @@ class AudioRecorder {
 let recorderInstance = null;
 
 // Loads the InboxSDK and sets up the compose view with transcription buttons
-InboxSDK.load(2, 'sdk_Transcription_7792b396c1').then(function (sdk) {
+InboxSDK.load(2, "sdk_Transcription_7792b396c1").then((sdk) => {
     sdk.Compose.registerComposeViewHandler((composeView) => {
         // Ensures a single instance of AudioRecorder is used across the extension
         if (!recorderInstance) {
@@ -132,6 +134,7 @@ InboxSDK.load(2, 'sdk_Transcription_7792b396c1').then(function (sdk) {
         });
     });
 });
+  
 
 // Function to transcribe audio to text using OpenAI's Whisper model
 async function processTranscription(audioBlob, storedToken) {
@@ -166,7 +169,7 @@ async function postToGPT4(transcriptionText, storedToken) {
         model: "gpt-4",
         messages: [{
             role: "user",
-            content: `As an editor, your task is to proofread and correct the provided email transcript, if needed. Focus primarily on ensuring the accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations. Correct any errors found. Format the email by separating it into distinct paragraphs based on topics, with a greeting, body, and sign-off if given the transcription. If a greeting and sign off are not included, still transcribe the email but do not include them. Do not introduce any new content; only make necessary corrections. If the original transcript is brief and error-free, simply restate it without modifications. Note: Do not add a subject line or include "Transcript:" before your transcription.
+            content: `As an editor, your task is to proofread and correct the provided email transcript, if needed. Focus primarily on ensuring the accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations. Correct any errors found. Format the email by separating it into distinct paragraphs based on topics, with a greeting, body, and sign-off if given the transcription. Do not introduce any new content; only make necessary corrections. If the original transcript is brief and error-free, simply restate it without modifications. Note: Do not add a subject line.
 
             Transcript: ###
             ${transcriptionText}:###`

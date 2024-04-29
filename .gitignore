@@ -4,3 +4,4 @@ public/.DS_Store
 build/
 node_modules/
 .env
+dist/
