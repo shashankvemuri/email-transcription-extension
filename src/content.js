@@ -169,11 +169,11 @@ async function postToGPT4(transcriptionText, storedToken) {
         model: "gpt-4",
         messages: [{
             role: "user",
-            content: `As an editor, your task is to proofread and correct the provided email transcript. Focus on ensuring accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations. Correct spelling errors. Separate the email into distinct paragraphs based on topics, including a greeting, body, and sign-off only if present. Do not introduce new content or add a subject line. Keep formatting simple and in line with the original structure. If you detect list formatting in the content, format it appropriately as numbered or bulleted lists. Return the corrected version without adding a period at the end or using a prefix like 'Transcript:'.
+            content: `As an editor, your task is to proofread the provided email transcript. Focus on ensuring the accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations. Separate the email into distinct paragraphs based on topics, including a greeting, body, and sign-off only if present. Do not introduce any new content, change the transcription beyond spelling fixes, or add a subject line. Keep formatting simple and in line with the original structure. If you detect list formatting in the content, format it appropriately as numbered or bulleted lists. Return the corrected version without adding a period at the end or using a prefix like 'Transcript:'.
     
-            Transcript: """
+            Transcript: ###
             ${transcriptionText}
-            """
+            ###
         `}],
         temperature: 0.2
     };      
