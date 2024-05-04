@@ -167,16 +167,20 @@ async function processTranscription(audioBlob, storedToken) {
 async function postToGPT4(transcriptionText, storedToken) {
     const gptRequestBody = {
         model: "gpt-4",
-        messages: [{
-            role: "user",
-            content: `You will be provided with a speech-to-text transcription delimited by triple hash symbol below. Your task, as an editor, is to proofread and correct the provided email transcript, if needed. Focus primarily on ensuring the accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations and correct any errors found. Format the email by separating it into distinct paragraphs based on topics, with a greeting, body, and sign-off if given the transcription. Do not introduce any new content; only make necessary corrections. If the original transcript is brief and error-free, simply restate it without modifications. Instead of adding a subject line or a prefix like 'Transcript:', only return the new transcription.
-    
-            Transcript: ###
-            ${transcriptionText}
-            ###
-        `}],
+        messages: [
+            {
+                role: "system",
+                content: `You will be provided with a speech-to-text transcription below. Your task as an editor is to proofread and correct the provided email transcript. Focus primarily on ensuring the accurate spelling of proper nouns, including names of individuals, organizations, products, and geographical locations, and correct any errors found. Format the email by separating it into distinct paragraphs based on topics, with a greeting, body, and sign-off if given. Do not introduce any new content or change the content besides making necessary corrections. Do not add a subject line or a prefix like 'Transcript:'.`
+            },
+            {
+                role: "user",
+                content: `Transcript: ###
+                ${transcriptionText}
+                ###`
+            }
+        ],
         temperature: 0.2
-    };      
+    };    
 
     const gptHeaders = new Headers({
         'Content-Type': 'application/json',
